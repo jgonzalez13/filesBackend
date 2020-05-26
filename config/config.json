@@ -2,7 +2,7 @@
   "development": {
     "username": "mannny",
     "password": "secret",
-    "database": "filesDb",
+    "database": "filesDB",
     "port":"5432",
     "dialect": "postgres"
   },
