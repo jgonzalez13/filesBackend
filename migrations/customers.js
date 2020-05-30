@@ -23,10 +23,11 @@ module.exports = {
           }
       },
       phone:{
-          type: Sequelize.INTEGER,
-          allowNull: false,
-          defaultValue: false,
-          unique:true
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
       },
       email:{
           type: Sequelize.STRING,
