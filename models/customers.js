@@ -3,16 +3,20 @@ module.exports = (sequelize, DataTypes) => {
 
   const Customers = sequelize.define('Customers', {
     id_customer: DataTypes.INTEGER,
-    name: DataTypes.STRING,
+    userName: DataTypes.STRING,
     direction: DataTypes.STRING,
     phone: DataTypes.STRING,
-    email: DataTypes.STRING
+    email: DataTypes.STRING,
+    password: DataTypes.STRING,
+    token: DataTypes.STRING
 
   }, {});
   
   Customers.associate = function(models) {
     Customers.hasMany(models.Files,{
-      onDelete: 'cascade' 
+      as:'Files',
+      sourceKey: 'id_customer',
+      onDelete: 'cascade'
     });
     
   };

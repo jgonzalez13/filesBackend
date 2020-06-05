@@ -37,7 +37,7 @@ module.exports = {
                 }
             },
             id_customer:{
-                type: Sequelize.STRING,
+                type: Sequelize.INTEGER,
             
                 allowNull: false,
                 validate: {
