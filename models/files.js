@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Files.associate = function(models) {
     Files.hasMany(models.Audience, { 
+      as:'Audience',
+      foreignKey: 'id_customer',
+      sourceKey: 'id_file',
       onDelete: 'cascade' 
     });
   };

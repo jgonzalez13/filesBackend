@@ -8,13 +8,14 @@ module.exports = {
           autoIncrement: true,
           unique:true
       },
-      name: {
-          type:Sequelize.STRING,
-          allowNull: false,
-          validate: {
-              notEmpty: true
-          }
-      },
+      userName:{
+        type: Sequelize.STRING,
+        unique:true,
+        allowNull: false,
+        validate: {
+            notEmpty:true
+        }
+     },
       direction:{
           type: Sequelize.STRING,
           allowNull: false,
@@ -36,7 +37,22 @@ module.exports = {
           validate: {
               notEmpty:true
           }
-      }
+      },
+      password:{
+            type: Sequelize.STRING,
+            unique:true,
+            allowNull: false,
+            validate: {
+                notEmpty:true
+            }
+        },
+        token:{
+            type: Sequelize.STRING,
+            unique:true,
+            validate: {
+                notEmpty:true
+            }
+        }
     });
 
   },

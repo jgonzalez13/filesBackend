@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
 
   const Audience = sequelize.define('Audiences', {
-    id: DataTypes.INTEGER,
+    id_audience: DataTypes.INTEGER,
     court:DataTypes.STRING,
     date: DataTypes.DATE,
     type:DataTypes.STRING,
@@ -12,6 +12,8 @@ module.exports = (sequelize, DataTypes) => {
   
   Audience.associate = function(models) {
     Audience.belongsTo(models.Files,{
+      foreignKey: 'id_file',
+      targetKey: 'id_file',
       onDelete: 'cascade' 
     });
     
