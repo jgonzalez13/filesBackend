@@ -1,0 +1,16 @@
+[33m11e8486[m[33m ([m[1;36mHEAD -> [m[1;32mramaedi[m[33m)[m agrege files en routes
+[33m3641cb8[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m Merge pull request #4 from jgonzalez13/oscar
+[33me8e7743[m el token ya quedo, solo que esta en app.js, ya aregle las rutas ya se pueden usar, para pasar los tokens a las rutas, otra cosa el posman arroja el resultado pero por consola, con un error que no logro corregir, no sale en preview
+[33m0e8e2ee[m change models
+[33m65e3ba8[m Merge pull request #3 from jgonzalez13/oscar
+[33m8bf7e14[m[33m ([m[1;31morigin/oscar[m[33m)[m era calis
+[33mf62b057[m nomas no quiere
+[33m39698e4[m Merge branch 'master' of https://github.com/jgonzalez13/filesBackend into oscar
+[33m7b1b4d8[m avia puesto la carpeta en gitignore
+[33mabe7f14[m Merge pull request #2 from jgonzalez13/oscar
+[33m5cea0bf[m error en el nombre de una tabla
+[33md572e24[m ya los quedo, solo tenia que peliar con postgres
+[33m96437d9[m  name database
+[33m464c0d9[m sequelize first step
+[33m8f2d8e7[m setup proyect
+[33mfefbb70[m Initial commit

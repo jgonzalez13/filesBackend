@@ -35,17 +35,3 @@ module.exports = app => {
 }
 
 
-// calis
-// directo
-// insert into public."Customers" values (1,'oscar gonzalez','ocaregr','00 000 000','osacr@gmail.com','123', ' ');
-
-// post{
-// 	"id_customer": 1,
-//     "name": "oscar gonzalez",
-//     "userName": "ocaregr",
-//     "direction": "my callezota",
-//     "phone": "00 000 000",
-//     "email": "osacr@gmail.com",
-//     "password": "123",
-//     "token": ""
-// }
