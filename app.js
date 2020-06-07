@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // 3
 app.use(bodyParser.json());
 
-app.listen(3000,()=>{
+app.listen(3001,()=>{
     console.log('Servidor iniciado en el puerto 3000') 
 });
 app.use('/', indexRouter);
