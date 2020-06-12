@@ -6,7 +6,7 @@ const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
-const db = {};
+let sequelize;
 
 const db = {
   sequelize,
@@ -14,7 +14,7 @@ const db = {
   models : {}
 };
 
-let sequelize;
+
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
@@ -32,7 +32,7 @@ fs
   });
 
 Object.keys(db).forEach(modelName => {
-  if (db.models[modelName].associate) {
+  if (db.models[modelName].associate(db)) {
     db.models[modelName].associate(db);
   }
 });

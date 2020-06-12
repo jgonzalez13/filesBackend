@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const jwt = require('jsonwebtoken'); 
 const bodyParser = require('body-parser');
-var indexRouter = require('./routes/index');
+///var indexRouter = require('./models/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
@@ -29,73 +29,73 @@ app.use(bodyParser.json());
 app.listen(3000,()=>{
     console.log('Servidor iniciado en el puerto 3000') 
 });
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+//app.use('/', indexRouter);
+app.use('/user',usersRouter);
 
 
 // 4
-app.get('/', function(req, res) {
-    res.json({ message: 'recurso de entrada' });
-});
+// app.get('/', function(req, res) {
+//     res.json({ message: 'recurso de entrada' });
+// });
 
-//// genera token al momento de que usu y password is correct
+// //// genera token al momento de que usu y password is correct
 
-// 5
-app.post('/validar', (req, res) => {
-    if(req.body.userName === "userName" && req.body.password === "password") {
-		const payload = {
-			check:  true
-		};
-		const token = jwt.sign(payload, app.get('llave'), {
-			expiresIn: 60 * 5 ///vida del token
-		});
-		res.json({
-			mensaje: 'Autenticación correcta',
-			token: token
-		});
-    } else {
-        res.json({ mensaje: "Usuario o contraseña incorrectos"})
-    }
-})
-
-
-// 6
+// // 5
+// app.post('/validar', (req, res) => {
+//     if(req.body.userName === "userName" && req.body.password === "password") {
+// 		const payload = {
+// 			check:  true
+// 		};
+// 		const token = jwt.sign(payload, app.get('llave'), {
+// 			expiresIn: 60 * 5 ///vida del token
+// 		});
+// 		res.json({
+// 			mensaje: 'Autenticación correcta',
+// 			token: token
+// 		});
+//     } else {
+//         res.json({ mensaje: "Usuario o contraseña incorrectos"})
+//     }
+// })
 
 
-//// verifica el token valido
+// // 6
 
 
-const rutasProtegidas = express.Router(); 
-rutasProtegidas.use((req, res, next) => {
-    const token = req.headers['token'];
+// //// verifica el token valido
+
+
+// const rutasProtegidas = express.Router(); 
+// rutasProtegidas.use((req, res, next) => {
+//     const token = req.headers['token'];
 	
-    if (token) {
-      jwt.verify(token, app.get('llave'), (err, decoded) => {      
-        if (err) {
-          return res.json({ mensaje: 'Token inválida' });    
-        } else {
-          req.decoded = decoded;    
-          next();
-        }
-      });
-    } else {
-      res.send({ 
-          mensaje: 'Token no proveída.' 
-      });
-    }
- });
+//     if (token) {
+//       jwt.verify(token, app.get('llave'), (err, decoded) => {      
+//         if (err) {
+//           return res.json({ mensaje: 'Token inválida' });    
+//         } else {
+//           req.decoded = decoded;    
+//           next();
+//         }
+//       });
+//     } else {
+//       res.send({ 
+//           mensaje: 'Token no proveída.' 
+//       });
+//     }
+//  });
 
-//  accion a realizar con token valido
+// //  accion a realizar con token valido
 
-app.get('/datos', rutasProtegidas, (req, res) => {
-	const datos = [
-		{ id: 1, nombre: "Asfo" },
-		{ id: 2, nombre: "Denisse" },
-		{ id: 3, nombre: "Carlos" }
-	];
+// app.get('/datos', rutasProtegidas, (req, res) => {
+// 	const datos = [
+// 		{ id: 1, nombre: "Asfo" },
+// 		{ id: 2, nombre: "Denisse" },
+// 		{ id: 3, nombre: "Carlos" }
+// 	];
 	
-	res.json(datos);
-});
+// 	res.json(datos);
+// });
 
 
 

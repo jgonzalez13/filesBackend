@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     counterpart : DataTypes.STRING,
     status:DataTypes.STRING,
     matter:DataTypes.STRING,
+    location:DataTypes.STRING,
     id_customer:DataTypes.INTEGER
   }, {});
   Files.associate = function(models) {

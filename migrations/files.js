@@ -36,6 +36,14 @@ module.exports = {
                     notEmpty:false
                 }
             },
+            location:{
+                type: Sequelize.STRING,
+                
+                allowNull: false,
+                validate: {
+                    notEmpty:false
+                }
+            },
             id_customer:{
                 type: Sequelize.INTEGER,
             
