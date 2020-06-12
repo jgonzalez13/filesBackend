@@ -7,13 +7,8 @@ const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 let sequelize;
-
-const db = {
-  sequelize,
-  Sequelize,
-  models : {}
-};
-
+const models = {};
+const db = {};
 
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
@@ -28,12 +23,13 @@ fs
   })
   .forEach(file => {
     const model = sequelize['import'](path.join(__dirname, file));
-    db.models[model.name] = model;
+    db[model.name] = model;
   });
 
 Object.keys(db).forEach(modelName => {
-  if (db.models[modelName].associate(db)) {
-    db.models[modelName].associate(db);
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+    db.models = db[modelName];
   }
 });
 

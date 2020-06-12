@@ -1,47 +1,80 @@
-//const { Customers } = require('../models/customers')
+ const app = require('express')();
+ var models = require('../models/index');
 
-module.exports = app => {
-
-  const Customers = db.models.Customers;
-
-  app.get('/:id_customer', (req,res) => {
-
-    Customers.findById(req.params.id, {
-      attributes: ['id', 'name', 'email']
-      })
-      .then(result => res.json(result))
-      .catch(error => {
-      res.status(412).json({msg: error.message})
-    })
-  })
-
-  app.post('/Customer', (req,res) => {
-    Customers.create(req.body)
-      .then(result => res.json(result))
-      .catch(error => {
-          res.status(412).json({msg: error.message})
-    })
-  })
-
-  app.delete('/Customer/:id_customer', (req,res) => {
-        Customers.destroy({where: {id: req.params.id}})
-          .then(result => res.sendStatus(204))
-          .catch(error => {
-              res.status(412).json({msg: error.message})
-          })
-  })
+app.post('/Customer', function(req, res) {
+  models.Customers.create({
+    userName: req.body.userName,
+    direction: req.body.direction,
+    phone: req.body.phone,
+    email: req.body.email,
+    password: req.body.password,
+    token: req.body.token
+  }).then(function(Customer) {
+    res.json(Customer);
+  });
+});
 
 
-}
+app.get('/Customer/:id', function(req, res) {
+  models.Customers.findOne({
+    where: {
+      id: req.params.id
+    }
+  }).then(function(Customer) {
+    res.json(Customer);
+  });
+});
 
+
+app.get('/Customer', function(req, res) {
+  models.Customers.findAll({
+    attributes: {  }
+  }).then(function(Customer) {
+    res.json(Customer);
+  });
+});
+
+
+app.put('/Customer/:id', function(req, res) {
+  models.Customers.findOne({
+    where: {
+      id: req.params.id
+    }
+  }).then(function(Customer) {
+    if(Customer){
+      Customer.update({
+        userName: req.body.userName,
+        direction: req.body.direction,
+        phone: req.body.phone,
+        email: req.body.email,
+        password: req.body.password,
+        token: req.body.token
+      }).then(function(Customer) {
+        res.send(Customer);
+      });
+    }
+  });
+});
+
+
+app.delete('/Customer/:id', function(req, res) {
+  models.Customers.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then(function(Customer) {
+    res.json(Customer);
+  });
+});
+
+  module.exports = app;
 
 // calis
 // directo
-// insert into public."Customers" values (1,'oscar gonzalez','ocaregr','00 000 000','osacr@gmail.com','123', ' ');
+// insert into public."Customers" values (1,'oscar gonzalez','my callezota','00 000 000','osacr@gmail.com','123', ' ');
 
-// post{
-// 	"id_customer": 1,
-//     "name": "oscar gonzalez",
+// post
+// {
 //     "userName": "ocaregr",
 //     "direction": "my callezota",
 //     "phone": "00 000 000",

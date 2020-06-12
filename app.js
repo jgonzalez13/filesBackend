@@ -1,17 +1,11 @@
 var createError = require('http-errors');
-var express = require('express');
+var app = require('express')();
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const jwt = require('jsonwebtoken'); 
 const bodyParser = require('body-parser');
-///var indexRouter = require('./models/index');
-var usersRouter = require('./routes/users');
-
-var app = express();
-
-////  token
-
+var Routers = require('./routes/users');
 
 const config = {
 	llave : "miclaveultrasecreta123*"
@@ -29,16 +23,15 @@ app.use(bodyParser.json());
 app.listen(3000,()=>{
     console.log('Servidor iniciado en el puerto 3000') 
 });
-//app.use('/', indexRouter);
-app.use('/user',usersRouter);
 
+app.use(Routers);
 
 // 4
-// app.get('/', function(req, res) {
-//     res.json({ message: 'recurso de entrada' });
-// });
+app.get('/', function(req, res) {
+    res.json({ message: 'recurso de entrada' });
+});
 
-// //// genera token al momento de que usu y password is correct
+//// genera token al momento de que usu y password is correct
 
 // // 5
 // app.post('/validar', (req, res) => {
@@ -96,7 +89,5 @@ app.use('/user',usersRouter);
 	
 // 	res.json(datos);
 // });
-
-
 
 module.exports = app;

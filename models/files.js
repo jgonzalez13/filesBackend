@@ -1,22 +1,27 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-
   const Files = sequelize.define('Files', {
-    id_file: DataTypes.INTEGER,
     year: DataTypes.DATE,
-    counterpart : DataTypes.STRING,
-    status:DataTypes.STRING,
-    matter:DataTypes.STRING,
-    location:DataTypes.STRING,
-    id_customer:DataTypes.INTEGER
+    counterpart: DataTypes.STRING,
+    status: DataTypes.STRING,
+    metter: DataTypes.STRING,
+    location: DataTypes.STRING,
+    id_customer: DataTypes.INTEGER
   }, {});
   Files.associate = function(models) {
-    Files.hasMany(models.Audience, { 
-      as:'Audience',
-      foreignKey: 'id_customer',
-      sourceKey: 'id_file',
-      onDelete: 'cascade' 
-    });
+    // associations can be defined here
+    Files.belongsTo(models.Customers
+      // ,{
+      // foreignKey: 'id_customer',
+      // targetKey: 'id_customer'
+    // }
+    ),
+    Files.hasMany(models.Audience
+      // , { 
+    //   foreignKey: 'id_file',
+    //   sourceKey: 'id_file'
+    // }
+    )
   };
   return Files;
 };
